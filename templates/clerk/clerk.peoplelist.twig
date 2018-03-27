@@ -1,0 +1,50 @@
+{% extends "index.twig" %}
+
+{% block title %}
+    Організації
+{% endblock %}
+{% block content %}
+
+
+
+    <table id="peoplelist" class="display" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Прізвище</th>
+                <th>Ім'я</th>
+                <th>По батькові</th>
+                <th>Адреса</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Прізвище</th>
+                <th>Ім'я</th>
+                <th>По батькові</th>
+                <th>Адреса</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        $(document).ready(function () {
+            $('#peoplelist').DataTable({
+                "processing": true,
+                "language": uk_trans,
+                "serverSide": true,
+                "ajax": "{{path('ajax.people.getlist')}}",
+                "columns": [
+                    {"data": "lastname"},
+                    {"data": "firstname"},
+                    {"data": "secondname"},
+                    {"data": "addr"},
+                    {"data": "edit"}
+                ]
+            });
+        });
+    </script>
+
+
+{% endblock %}
